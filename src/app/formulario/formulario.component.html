@@ -1,0 +1,156 @@
+<div class="container">
+
+
+<div class="card">
+
+<div class="card-header d-flex justify-content-center">
+
+<h1>Formulario Reactivo</h1>
+</div>
+
+<div class="card-body">
+
+<form [formGroup]="x">
+		<div class="form-group">
+			<label>Nombre</label>
+			<input  type="text"   name="nombre" formControlName="nombre"  class="form-control ">
+			<div class="alert alert-danger" *ngIf="x.get('nombre').invalid && (x.get('nombre').touched || x.get('nombre').dirty)">
+						<div *ngIf="x.get('nombre').errors.required">
+									<span>Nombre Requerido</span>
+						</div>
+							<div *ngIf="x.get('nombre').errors.minlength">
+									<span>Minimo debes agregar 3 Caracteres</span>
+						</div>
+
+			</div>
+		</div>
+		<div class="form-group">
+				<label>Apellido</label>
+			<input  type="text"   name="apellido" formControlName="apellido" class="form-control">
+			<div class="alert alert-danger" *ngIf="x.get('apellido').invalid && (x.get('apellido').touched || x.get('apellido').dirty)">
+						<div *ngIf="x.get('apellido').errors.required">
+									<span>Apellido Requerido</span>
+						</div>
+							<div *ngIf="x.get('apellido').errors.minlength">
+									<span>Minimo debes agregar 3 Caracteres</span>
+						</div>
+
+			</div>
+
+		</div>
+		<div class="form-group">
+				<label>Seleccione el sexo:</label>
+			<select name="sexo" class="form-control" formControlName="sexo">
+				<option value="M">Masculino</option>
+				<option value="F">Femenino</option>
+
+			</select>  
+
+			<div class="alert alert-danger" *ngIf="x.get('sexo').invalid && (x.get('sexo').touched || x.get('sexo').dirty)">
+						<div *ngIf="x.get('sexo').errors.required">
+									<span>Sexo Requerido</span>
+						</div>
+							<div *ngIf="x.get('sexo').errors.minLength">
+									<span>Minimo debes agregar 3 Caracteres</span>
+						</div>
+
+			</div>
+		</div>
+
+
+
+
+<div class="card">
+
+	<div class="card-header d-flex  justify-content-between">Telefonos   <button class=" btn btn-warning " (click)="agregar()" >Agregar Telefonos</button></div>
+
+	<div class="card-body">
+		<div class=" row container" formArrayName="telefonos"   *ngFor="let objetoArreglo of  obtieneArregloControl.controls; let i =index">
+
+
+<div [formGroupName]="i"  class="row container">
+<div class="col-md-3  col-sm-6  col-xs-6">
+<label>Telefono</label>
+</div>
+<div class="col-md-3  col-sm-6  col-xs-6">
+<input type="text"   name="telefono" formControlName="telefono">
+</div>
+
+
+<div class="col-md-3   col-sm-6  col-xs-6">
+<label>Descripcion</label>
+</div>
+<div class="col-md-3  col-sm-6  col-xs-6">
+<input type="text"   name="descripcion" formControlName="descripcion">
+</div>
+
+
+</div>
+</div>
+		</div>
+
+	</div>
+		<div class="form-group">
+			<button class=" btn btn-success form-control" (click)=" registrar()"   [disabled]="x.invalid">Enviar</button>
+		</div>
+
+
+
+
+
+
+	</form>
+
+</div>
+
+</div>
+
+<br>
+	
+<div class="card">
+
+	<div class="card-header"> Resultados Datos enviados al Back</div>
+
+	<div class="card-body">
+<div class="row">
+<div class="col-md-6">
+<label>Nombre recibido:</label>
+</div>
+<div class="col-md-6">
+<span>{{personaMostrar.nombreRecibido}}</span>
+</div>
+<div class="col-md-6">
+	<label>Apellido recibido:</label>
+</div>
+<div class="col-md-6">
+
+<span>{{personaMostrar.apellidoRecibido}}</span>
+</div>
+
+<div class="col-md-6">
+	<label>Sexo recibido:</label>
+</div>
+<div class="col-md-6">
+<span>{{personaMostrar.sexoRecibido}}</span>
+</div>
+
+<div class="col-md-6">
+	<label>Telefonos recibido:</label>
+</div>
+<div class="col-md-6">
+<select>
+<option *ngFor=" let  telefonosR of  arreglo"> {{telefonosR.telefono}}</option>
+
+</select>
+</div>
+
+
+</div>
+</div>
+
+
+</div>
+
+
+
+</div>
